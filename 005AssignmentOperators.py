@@ -1,0 +1,16 @@
+a = 2
+print( 'Asignacion "a = 2": {0}'.format( a ) )
+a += 7
+print( 'Suma de asignacion "a += 7": {0}'.format( a ) )
+a -= 4
+print( 'Resta de asignacion "a -= 4": {0}'.format( a ) )
+a *= 4
+print( 'Multiplicacion de asignacion "a *= 4": {0}'.format( a ) )
+a /= 2
+print( 'Division de asignacion "a /= 2": {0}'.format( a ) )
+a %= 3
+print( 'Modulo de asignacion "a %= 3": {0}'.format( a ) )
+a += 2
+print( 'Suma de asignacion "a += 2": {0}'.format( a ) )
+a **= 3
+print( 'Potencia de asignacion "a **= 3": {0}'.format(a) )
