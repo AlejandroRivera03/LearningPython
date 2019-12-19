@@ -1,3 +1,5 @@
+from collections import deque
+
 # Tuplas
 tupla = (100, 'hola', [1,2,3,4], -50)
 # Tuplas accept index and slicing
@@ -49,3 +51,31 @@ print( numeros[20] )
 
 for clave, valor in colores.items():
     print( clave, valor )
+
+
+# Pilas
+pila = [1,2,3,4]
+pila.append(5) # Last in
+pila.append(6) # append() adds at the end
+
+print( pila )
+
+pila.pop() # First out
+pila.pop() # pop() removes last element and returns it
+pila.pop()
+
+print( pila )
+
+# Colas
+cola = deque(['Eduardo', 'Alejandro','Marisela'])
+print( cola )
+
+cola.append('Maria') # First in
+cola.append('Miguel') # append() adds at the end
+
+print( cola )
+
+cola.popleft() # First out
+cola.popleft() # popleft() removes first element and returns it
+
+print( cola )
