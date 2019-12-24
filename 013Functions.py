@@ -72,3 +72,38 @@ def super_funcion(*args, **kwargs):
         print( kwarg, ' ', kwargs[kwarg] )
 
 super_funcion( 5,10,15,20,15,nombre='alejandro',edad=20 )
+
+# Recursividad
+
+def cuenta_atras(num):
+    print( num )
+    num -= 1
+    if num > 0:
+        cuenta_atras(num)
+    else:
+        print( 'Booooom!' )
+    print( 'fin de la funcion', num )
+
+cuenta_atras( 5 )
+
+def factorial( num ):
+    print( 'valor inicial ->', num )
+    if num > 1:
+        num = num * factorial( num-1 )
+    print( 'valor final ->', num )
+    return num
+
+factorial(5)
+
+# Integrated functions
+
+print( int( '50' ) )
+print( float( '3.1416' ) )
+print( 'concatenando numeros ' + str(3.1415) + ' ' + str(55) )
+print( 'decimal: {0}, binario: {1}, hex: {2}'.format( 10, bin(10), hex(10) ) )
+print( 'binario (1010) a decimal {0}, hex (a) a decimal {1}'.format( int('0b1010', 2), int('0xa', 16) ) )
+print( 'abs(-10): {}, abs(10): {}'.format( abs(-10), abs(10) ) )
+print( 'round(5.5): {}, round(5.4): {}'.format( round(5.5), round(5.4) ) )
+print( 'eval("5+7"): {}'.format( eval("5+7") ) )
+print( 'len("una cadena"): {}'.format( len("una cadena") ) )
+help()
