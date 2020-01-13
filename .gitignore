@@ -3,3 +3,5 @@ dist/
 paquete.egg-info/
 *.pckl
 *.txt
+*.ico
+*.png
