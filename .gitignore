@@ -2,3 +2,4 @@
 dist/
 paquete.egg-info/
 *.pckl
+*.txt
