@@ -1,4 +1,13 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button
+
+def sumar():
+    r.set( float( n1.get() ) + float( n2.get() ) )
+
+def restar():
+    r.set( float( n1.get() ) - float( n2.get() ) )
+
+def producto():
+    r.set( float( n1.get() ) * float( n2.get() ) )
 
 root = Tk()
 
@@ -32,7 +41,7 @@ label2.config( textvariable=texto )
 imagen = PhotoImage( file='oso.gif' )
 Label( frame, image=imagen, bd=0 ).place(x=0, y=80)
 
-entriesSection = Frame( root, width=480, height=250 )
+entriesSection = Frame( root, width=280, height=250 )
 # entriesSection.config( bg='green' )
 entriesSection.place(x=0, y=251)
 
@@ -76,5 +85,23 @@ labelentry6.grid( row=5, column=0, padx=3, pady=3, sticky='ne' )
 entry6 = Text( entriesSection )
 entry6.grid( row=5, column=1, padx=3, pady=3 )
 entry6.config( width=16, height=5, font=('Console', 10), selectbackground='red', padx=5 )
+
+
+n1 = StringVar()
+n2 = StringVar()
+r = StringVar()
+
+buttonSection = Frame( root, width=200, height=250 )
+buttonSection.place(x=281, y=251)
+
+Label( buttonSection, text='Primer numero' ).grid( row=0, column=0, sticky='e' )
+Entry( buttonSection, justify='center', textvariable=n1 ).grid( row=0, column=1 )
+Label( buttonSection, text='Segundo numero' ).grid( row=1, column=0, sticky='e' )
+Entry( buttonSection, justify='center', textvariable=n2 ).grid( row=1, column=1 )
+Label( buttonSection, text='Resultado' ).grid( row=2, column=0, sticky='e' )
+Entry( buttonSection, justify='center', textvariable=r, state='disabled' ).grid( row=2, column=1 )
+Button( buttonSection, text='Suma', command=sumar ).grid( row=3, column=0, sticky='we' )
+Button( buttonSection, text='Resta', command=restar ).grid( row=4, column=0, sticky='we' )
+Button( buttonSection, text='Producto', command=producto ).grid( row=5, column=0, sticky='we' )
 
 root.mainloop() # Always put it at the end
