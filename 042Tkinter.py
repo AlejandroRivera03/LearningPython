@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton
 
 def sumar():
     r.set( float( n1.get() ) + float( n2.get() ) )
@@ -15,6 +15,18 @@ def seleccionar():
 def reset():
     opcion.set( None )
     monitor.config( text='' )
+
+def coffee():
+    cadena = ''
+    if( leche.get() ):
+        cadena += 'Con leche, '
+    else:
+        cadena += 'Sin leche, '
+    if( azucar.get() ):
+        cadena += 'Con azucar'
+    else:
+        cadena += 'Sin azucar'
+    customcoffe.config( text='{}'.format( cadena ) )
 
 root = Tk()
 
@@ -111,8 +123,7 @@ Button( buttonSection, text='Suma', command=sumar ).grid( row=3, column=0, stick
 Button( buttonSection, text='Resta', command=restar ).grid( row=4, column=0, sticky='we' )
 Button( buttonSection, text='Producto', command=producto ).grid( row=5, column=0, sticky='we' )
 
-radioSection = Frame( root, width=200, height=250 )
-radioSection.config( bd=1, relief='ridge' )
+radioSection = Frame( root, width=80, height=250 )
 radioSection.place( x=790, y=0 )
 
 opcion = IntVar()
@@ -122,5 +133,19 @@ Radiobutton( radioSection, text='Opcion 3', variable=opcion, value=3, command=se
 monitor = Label( radioSection )
 monitor.pack()
 Button( radioSection, text='Reiniciar', command=reset ).pack()
+
+
+checkSection = Frame( root, width=200, height=250 )
+checkSection.place( x=870, y=0 )
+
+leche = IntVar()
+azucar = IntVar()
+
+Label( checkSection, text='Personaliza tu cafe' ).pack( anchor='w' )
+Checkbutton(checkSection, text='Con leche', variable=leche, onvalue=1, offvalue=0, command=coffee ).pack( anchor='w' )
+Checkbutton(checkSection, text='Con azucar', variable=azucar, onvalue=1, offvalue=0, command=coffee ).pack( anchor='w' )
+customcoffe = Label( checkSection )
+customcoffe.config( text='Sin leche, Sin azucar' )
+customcoffe.pack()
 
 root.mainloop() # Always put it at the end
