@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar
 
 def sumar():
     r.set( float( n1.get() ) + float( n2.get() ) )
@@ -9,14 +9,21 @@ def restar():
 def producto():
     r.set( float( n1.get() ) * float( n2.get() ) )
 
+def seleccionar():
+    monitor.config( text='valor {}'.format( opcion.get() ) )
+
+def reset():
+    opcion.set( None )
+    monitor.config( text='' )
+
 root = Tk()
 
 root.title( 'Ventanita' )
 root.resizable( 1, 1 ) # first for x axis, second for y axis
 root.iconbitmap( 'icono.ico' )
-root.config(width=480, height=501)
+root.config(width=1000, height=250)
 
-frame = Frame( root, width=480, height=250 )
+frame = Frame( root, width=300, height=250 )
 frame.config( cursor='pirate' )
 frame.config( bg='lightblue' )
 frame.config( bd=5 )
@@ -41,9 +48,9 @@ label2.config( textvariable=texto )
 imagen = PhotoImage( file='oso.gif' )
 Label( frame, image=imagen, bd=0 ).place(x=0, y=80)
 
-entriesSection = Frame( root, width=280, height=250 )
+entriesSection = Frame( root, width=260, height=250 )
 # entriesSection.config( bg='green' )
-entriesSection.place(x=0, y=251)
+entriesSection.place(x=300, y=0)
 
 labelentry1 = Label( entriesSection, text='Nombre (s)' )
 labelentry1.grid( row=0, column=0, padx=3, pady=3, sticky='e' )
@@ -91,8 +98,8 @@ n1 = StringVar()
 n2 = StringVar()
 r = StringVar()
 
-buttonSection = Frame( root, width=200, height=250 )
-buttonSection.place(x=281, y=251)
+buttonSection = Frame( root, width=230, height=250 )
+buttonSection.place(x=560, y=0)
 
 Label( buttonSection, text='Primer numero' ).grid( row=0, column=0, sticky='e' )
 Entry( buttonSection, justify='center', textvariable=n1 ).grid( row=0, column=1 )
@@ -103,5 +110,17 @@ Entry( buttonSection, justify='center', textvariable=r, state='disabled' ).grid(
 Button( buttonSection, text='Suma', command=sumar ).grid( row=3, column=0, sticky='we' )
 Button( buttonSection, text='Resta', command=restar ).grid( row=4, column=0, sticky='we' )
 Button( buttonSection, text='Producto', command=producto ).grid( row=5, column=0, sticky='we' )
+
+radioSection = Frame( root, width=200, height=250 )
+radioSection.config( bd=1, relief='ridge' )
+radioSection.place( x=790, y=0 )
+
+opcion = IntVar()
+Radiobutton( radioSection, text='Opcion 1', variable=opcion, value=1, command=seleccionar ).pack()
+Radiobutton( radioSection, text='Opcion 2', variable=opcion, value=2, command=seleccionar ).pack()
+Radiobutton( radioSection, text='Opcion 3', variable=opcion, value=3, command=seleccionar ).pack()
+monitor = Label( radioSection )
+monitor.pack()
+Button( radioSection, text='Reiniciar', command=reset ).pack()
 
 root.mainloop() # Always put it at the end
