@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton, Menu
 
 def sumar():
     r.set( float( n1.get() ) + float( n2.get() ) )
@@ -34,6 +34,32 @@ root.title( 'Ventanita' )
 root.resizable( 1, 1 ) # first for x axis, second for y axis
 root.iconbitmap( 'icono.ico' )
 root.config(width=1000, height=250)
+
+menubar = Menu( root )
+root.config( menu=menubar )
+
+filemenu = Menu( menubar, tearoff=0 )
+filemenu.add_command( label='Nuevo' )
+filemenu.add_command( label='Abrir' )
+filemenu.add_command( label='Guardar' )
+filemenu.add_command( label='Cerrar' )
+filemenu.add_separator()
+filemenu.add_command( label='Salir', command=root.quit )
+
+editmenu = Menu( menubar, tearoff=0 )
+editmenu.add_command( label='Cortar' )
+editmenu.add_command( label='Copiar' )
+editmenu.add_command( label='Pegar' )
+
+helpmenu = Menu( menubar, tearoff=0 )
+helpmenu.add_command( label='Ayuda' )
+filemenu.add_separator()
+helpmenu.add_command( label='Acerca de...' )
+
+
+menubar.add_cascade( label='Archivo', menu=filemenu )
+menubar.add_cascade( label='Editar', menu=editmenu )
+menubar.add_cascade( label='Ayuda', menu=helpmenu )
 
 frame = Frame( root, width=300, height=250 )
 frame.config( cursor='pirate' )
