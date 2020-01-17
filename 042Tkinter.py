@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton, Menu
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton, Menu, messagebox as Messagebox
 
 def sumar():
     r.set( float( n1.get() ) + float( n2.get() ) )
@@ -28,12 +28,37 @@ def coffee():
         cadena += 'Sin azucar'
     customcoffe.config( text='{}'.format( cadena ) )
 
+def infoPopup():
+    Messagebox.showinfo( 'Informacion', 'Este es un popup informativo')
+
+def warningPopup():
+    Messagebox.showwarning( 'Alerta', 'Este es un popup de alerta')   
+
+def errorPopup():
+    Messagebox.showerror( 'Error', 'Este es un popup de error') 
+
+def askQuestionPopup():
+    resultado = Messagebox.askquestion( 'Pregunta', 'Este es un popup de pregunta si-no, devuelve "yes" o "no" (str)') 
+    print( resultado )
+
+def askOkCalcelPopup():
+    resultado = Messagebox.askokcancel( 'Pregunta', 'Este es un popup de pregunta ok-cancelar, devuelve True o False') 
+    print( resultado )
+
+def askYesNoPopup():
+    resultado = Messagebox.askyesno( 'Pregunta', 'Este es un popup de pregunta si-no, devuelve True o False') 
+    print( resultado )
+
+def askRetryCalcelPopup():
+    resultado = Messagebox.askretrycancel( 'Reintentar', 'Este es un popup de re-intento, devuelve True o False') 
+    print( resultado )
+
 root = Tk()
 
 root.title( 'Ventanita' )
 root.resizable( 1, 1 ) # first for x axis, second for y axis
 root.iconbitmap( 'icono.ico' )
-root.config(width=1000, height=250)
+root.config(width=1200, height=250)
 
 menubar = Menu( root )
 root.config( menu=menubar )
@@ -161,7 +186,7 @@ monitor.pack()
 Button( radioSection, text='Reiniciar', command=reset ).pack()
 
 
-checkSection = Frame( root, width=200, height=250 )
+checkSection = Frame( root, width=130, height=250 )
 checkSection.place( x=870, y=0 )
 
 leche = IntVar()
@@ -173,5 +198,15 @@ Checkbutton(checkSection, text='Con azucar', variable=azucar, onvalue=1, offvalu
 customcoffe = Label( checkSection )
 customcoffe.config( text='Sin leche, Sin azucar' )
 customcoffe.pack()
+
+popupsSection = Frame( root, width=200, height=250 )
+popupsSection.place( x=1000, y=0 )
+Button( popupsSection, text='Info Popup', command=infoPopup ).pack( anchor="w" )
+Button( popupsSection, text='Alert Popup', command=warningPopup ).pack( anchor="w" )
+Button( popupsSection, text='Error Popup', command=errorPopup ).pack( anchor="w" )
+Button( popupsSection, text='Ask Question Popup', command=askQuestionPopup ).pack( anchor="w" )
+Button( popupsSection, text='Ask Ok Cancel Popup', command=askOkCalcelPopup ).pack( anchor="w" )
+Button( popupsSection, text='Ask Yes No Popup', command=askYesNoPopup ).pack( anchor="w" )
+Button( popupsSection, text='Ask Retry Cancel Popup', command=askRetryCalcelPopup ).pack( anchor="w" )
 
 root.mainloop() # Always put it at the end
