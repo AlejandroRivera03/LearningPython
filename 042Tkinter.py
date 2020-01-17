@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton, Menu, messagebox as Messagebox
+from tkinter import Tk, Frame, Label, StringVar, PhotoImage, Entry, Text, Button, Radiobutton, IntVar, Checkbutton, Menu, messagebox as Messagebox, colorchooser as ColorChooser, filedialog as FileDialog
 
 def sumar():
     r.set( float( n1.get() ) + float( n2.get() ) )
@@ -53,12 +53,25 @@ def askRetryCalcelPopup():
     resultado = Messagebox.askretrycancel( 'Reintentar', 'Este es un popup de re-intento, devuelve True o False') 
     print( resultado )
 
+def askColor():
+    color = ColorChooser.askcolor( title='Selecciona un color' )
+    print( color )
+
+def fileDialog():
+    ruta = FileDialog.askopenfilename( title='Abrir un archivo', filetypes=( ('Python File', '*.py'), ('Text File', '*.txt'), ('All Files', '*.*') ) )
+    print( ruta )
+
+def createFileDialog():
+    fichero = FileDialog.asksaveasfile( title='Guardar archivo', mode='w', defaultextension='txt')
+    fichero.write( 'Hola mundo' )
+    fichero.close()
+
 root = Tk()
 
 root.title( 'Ventanita' )
 root.resizable( 1, 1 ) # first for x axis, second for y axis
 root.iconbitmap( 'icono.ico' )
-root.config(width=1200, height=250)
+root.config(width=1350, height=250)
 
 menubar = Menu( root )
 root.config( menu=menubar )
@@ -199,7 +212,7 @@ customcoffe = Label( checkSection )
 customcoffe.config( text='Sin leche, Sin azucar' )
 customcoffe.pack()
 
-popupsSection = Frame( root, width=200, height=250 )
+popupsSection = Frame( root, width=150, height=250 )
 popupsSection.place( x=1000, y=0 )
 Button( popupsSection, text='Info Popup', command=infoPopup ).pack( anchor="w" )
 Button( popupsSection, text='Alert Popup', command=warningPopup ).pack( anchor="w" )
@@ -208,5 +221,12 @@ Button( popupsSection, text='Ask Question Popup', command=askQuestionPopup ).pac
 Button( popupsSection, text='Ask Ok Cancel Popup', command=askOkCalcelPopup ).pack( anchor="w" )
 Button( popupsSection, text='Ask Yes No Popup', command=askYesNoPopup ).pack( anchor="w" )
 Button( popupsSection, text='Ask Retry Cancel Popup', command=askRetryCalcelPopup ).pack( anchor="w" )
+
+advancedPopupSection = Frame( root, width=200, height=250 )
+advancedPopupSection.place( x=1150, y=0 )
+Button( advancedPopupSection, text='Choose a color', command=askColor ).pack( anchor='w' )
+Button( advancedPopupSection, text='Route file', command=fileDialog ).pack( anchor='w' )
+Button( advancedPopupSection, text='Create file', command=createFileDialog ).pack( anchor='w' )
+
 
 root.mainloop() # Always put it at the end
